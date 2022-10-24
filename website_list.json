@@ -1,0 +1,9 @@
+{
+  "websites": [
+    {"name": "CNN", "url": "cnn.com"},
+    {"name": "Fox News", "url": "foxnews.com"},
+    {"name": "CNBC", "url": "cnbc.com"},
+    {"name": "MSNBC", "url": "msnbc.com"},
+    {"name": "Vox", "url": "vox.com"}
+  ]
+}
