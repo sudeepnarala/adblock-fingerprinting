@@ -1,14 +1,13 @@
+FROM buildkite/puppeteer AS puppeteer_builder
 FROM browserless/chrome
 USER root
 RUN mkdir /usr/src/adblock
 WORKDIR /usr/src/adblock
-# RUN export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
-# RUN export PUPPETEER_EXECUTABLE_PATH="/usr/src/app/chromium-1028/chrome-linux/chrome"
-# RUN npm install puppeteer --unsafe-perm=true --allow-root
-# RUN CHROME_BIN="/usr/src/app/chromium-1028/chrome-linux/chrome"
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-RUN npm install puppeteer
-ADD website_list.json .
-ADD app.js .
+# Put any npm install lines below this one!
+COPY --from=puppeteer_builder /node_modules /node_modules=
+COPY website_list.json .
+COPY app.js .
+# Unfortunately needs to be set back to run start.sh
 WORKDIR /usr/src/app
+ENV root_directory="/usr/src/adblock"
 CMD ./start.sh & sleep 5 && node ../adblock/app.js && exit
