@@ -4,7 +4,7 @@ USER root
 RUN mkdir /usr/src/adblock
 WORKDIR /usr/src/adblock
 # Put any npm install lines below this one!
-COPY --from=puppeteer_builder /node_modules /node_modules=
+COPY --from=puppeteer_builder /node_modules /node_modules
 COPY website_list.json .
 COPY app.js .
 # Unfortunately needs to be set back to run start.sh
