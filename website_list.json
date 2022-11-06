@@ -4,6 +4,7 @@
     {"name": "Fox News", "url": "https://foxnews.com"},
     {"name": "CNBC", "url": "https://cnbc.com"},
     {"name": "MSNBC", "url": "https://msnbc.com"},
-    {"name": "Vox", "url": "https://vox.com"}
+    {"name": "Vox", "url": "https://vox.com"},
+    {"name": "Forbes", "url": "https://forbes.com"}
   ]
 }
