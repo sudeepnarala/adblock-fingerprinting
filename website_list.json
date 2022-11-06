@@ -5,6 +5,7 @@
     {"name": "CNBC", "url": "https://cnbc.com"},
     {"name": "MSNBC", "url": "https://msnbc.com"},
     {"name": "Vox", "url": "https://vox.com"},
-    {"name": "Forbes", "url": "https://forbes.com"}
+    {"name": "Forbes", "url": "https://forbes.com"},
+    {"name": "CRXExtractor", "url": "https://crxextractor.com"}
   ]
 }
