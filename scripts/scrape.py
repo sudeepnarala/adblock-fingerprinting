@@ -1,7 +1,8 @@
-import csv, bs4, requests
+import csv, json, bs4, requests, os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-WEBSITES_CSV_PATH = 'top10milliondomains.csv'
+WEBSITES_CSV_PATH = os.path.split(os.path.dirname(__file__))[0] + '../top10milliondomains.csv'
+WEBSITES_JSON_PATH = os.path.split(os.path.dirname(__file__))[0] + 'website_list.json'
 NUM_WEBSITES = 1000
 
 def load_url(url):
@@ -20,14 +21,18 @@ def load_url(url):
 
 
 websites = []
-with open(WEBSITES_CSV_PATH) as csv_file:
-    csv_reader = csv.reader(csv_file)
-    next(csv_reader)
-    for i, row in enumerate(csv_reader):
-        if i == NUM_WEBSITES:
-            break
-        websites.append(f'http://{row[1]}')
-    print('Finished compiling websites list')
+# with open(WEBSITES_CSV_PATH) as csv_file:
+#     csv_reader = csv.reader(csv_file)
+#     next(csv_reader)
+#     for i, row in enumerate(csv_reader):
+#         if i == NUM_WEBSITES:
+#             break
+#         websites.append(f'http://{row[1]}')
+
+with open(WEBSITES_JSON_PATH) as json_file:
+    data = json.load(json_file)
+    websites = list(map(lambda webObj: webObj['url'], data['websites']))
+print('Finished compiling websites list')
     
 with ThreadPoolExecutor() as executor:
     futures = {executor.submit(load_url, url): url for url in websites}
