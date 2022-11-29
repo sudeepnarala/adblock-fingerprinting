@@ -1,6 +1,5 @@
 {
   "websites": [
-    {"name": "CNN", "url": "https://cnn.com"},
     {"name": "Fox News", "url": "https://foxnews.com"},
     {"name": "CNBC", "url": "https://cnbc.com"},
     {"name": "MSNBC", "url": "https://msnbc.com"},
