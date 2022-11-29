@@ -2,6 +2,8 @@ const fs = require("fs")
 const puppeteer = require("puppeteer")
 const path = require('path');
 
+// https://www.alphr.com/
+
 const adblock_path = "extensions/adblock"
 
 async function run_main() {
@@ -27,6 +29,14 @@ async function run_main() {
         const { name, url } = website
         console.log(`Starting scrape for ${name}`)
         const page = await browser.newPage();
+        await page.exposeFunction('onCustomEvent', (e) => {
+            console.log(`${e.type} fired`, e.detail || '');
+          });
+        await page.evaluateOnNewDocument(() => {
+            document.addEventListener("keyup", (e) => {
+                window.onCustomEvent(e)
+            })
+        })
         await page.goto(url, {waitUntil: 'load'});
         let scripts = await page.$$("script")
         let script_strings = []
