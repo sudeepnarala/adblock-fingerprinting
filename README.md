@@ -17,3 +17,6 @@ extensions
         |
         ------- ....
 ```
+
+Run `npm i` to ensure that all dependencies are installed. 
+Run `npx tsc` to compile TypeScript files into JS files and then run `node engine.ts` to launch the scraper.

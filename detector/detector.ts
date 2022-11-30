@@ -12,7 +12,7 @@ export default class Detector {
         
         this.url = url;
 
-        if (!Detector.browserPromise)
+        if (Detector.browserPromise)
             return;
 
         Detector.browserPromise = puppeteer.launch({
