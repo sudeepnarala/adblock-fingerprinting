@@ -1,0 +1,9 @@
+{
+    "type": "module",
+    "devDependencies": {
+        "typescript": "^4.9.3"
+    },
+    "dependencies": {
+        "csv-parse": "^5.3.3"
+    }
+}

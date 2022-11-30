@@ -1,3 +1,4 @@
 *.DS_Store
 extensions/*
 data/*
+node_modules/*
