@@ -5,8 +5,9 @@ export default class AdmiralDetector extends Detector {
 
     protected async detect_internal() : Promise<Boolean> {
         const page = await Detector.browser.newPage();
-        const response = await page.goto(this.url, {waitUntil: 'networkidle0'});
-        const html = await response?.text();
+        await page.goto(this.url, {waitUntil: 'networkidle0'});
+        const html = await page.mainFrame().content();
+        page.close();
         return html?.indexOf(AdmiralDetector.admiral_url) != -1;
     }
 }
