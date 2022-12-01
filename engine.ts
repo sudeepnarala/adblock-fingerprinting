@@ -7,11 +7,19 @@ import { TimeoutError } from 'puppeteer';
 const website_csv_path = 'website_list.csv';
 
 async function run() {
-    fs.createReadStream(website_csv_path)
-      .pipe(parse({ delimiter: ",", from_line: 2}))
-      .on("data", async (row : [string, string, string]) => {
-        const domain = row[1];
-        const url = `http://${domain}`;
+  let urls : Array<string> = [];
+  fs.createReadStream(website_csv_path)
+    .pipe(parse({ delimiter: ",", from_line: 2}))
+    .on("data", (row : [string, string, string]) => {
+      const domain = row[1];
+      const url = `http://${domain}`;
+      urls.push(url);
+    })
+    .on("error", (error: { message: any; }) => { 
+      console.log(error.message);
+    })
+    .on("end", async () => {
+      for (const url of urls) {
         const detectors : Array<Detector> = [ new AdmiralDetector(url) ];
         const results = await Promise.all(detectors.map(async (d) => {
           try {
@@ -24,10 +32,8 @@ async function run() {
           }
         }));
         console.log(url, results);
-      })
-      .on("error", (error: { message: any; }) => { 
-        console.log(error.message);
-      });
+      }
+    });
 }
 
 if (require.main === module) {
