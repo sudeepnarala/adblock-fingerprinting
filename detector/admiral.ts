@@ -1,4 +1,4 @@
-import Detector from "./detector";
+import {Detector} from "./detector";
 
 export default class AdmiralDetector extends Detector {
     private static admiral_url = 'https://getadmiral.com/pb';

@@ -1,4 +1,4 @@
-import Detector from "./detector"
+import {Detector} from "./detector"
 
 class FABDetector extends Detector {
     constructor(url) {
