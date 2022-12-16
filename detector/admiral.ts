@@ -1,7 +1,7 @@
 import {Detector} from "./detector";
 
 export default class AdmiralDetector extends Detector {
-    private static admiral_url = 'https://getadmiral.com/pb';
+    private static admiral_url = 'npttech.com';
 
     protected async detect_internal() : Promise<Boolean> {
         const page = await Detector.browser.newPage();

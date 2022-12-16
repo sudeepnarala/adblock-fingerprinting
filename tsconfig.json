@@ -6,8 +6,9 @@
       "moduleResolution": "node"
     },
     "include": [
-        "*.ts",
         "detector/*.ts",
-        "features/*.ts"
+	"engine.ts",
+	"detect_admiral.ts",
+	"detect_fab_iab.ts"
     ]
   }
